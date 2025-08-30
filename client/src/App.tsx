@@ -23,7 +23,7 @@ const TOOLBAR_OPTIONS = [
   ["image", "blockquote", "code-block", "link"],
   ["clean"],
 ];
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 function App() {
   const [socket, setSocket] = useState<Socket>();
   const [quill, setQuill] = useState<Quill>();
@@ -32,7 +32,7 @@ function App() {
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    const s = io("http://localhost:3001", {
+    const s = io(BACKEND_URL), {
       transports: ['websocket'],
       timeout: 20000,
     });

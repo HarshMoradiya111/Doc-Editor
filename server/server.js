@@ -4,8 +4,7 @@ const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
 
-const MONGO_URI = 'mongodb+srv://Harshpatel21:Harshpatel111@codtecheditorcluster.1k3pjhz.mongodb.net/?retryWrites=true&w=majority&appName=CodtechEditorCluster';
-
+const MONGO_URI = process.env.MONGO_URI; 
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ Connected to MongoDB Atlas'))
