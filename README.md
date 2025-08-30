@@ -1,4 +1,3 @@
-# Doc-Editor
 # Doc-Editor: A Real-Time Collaborative Document Editor
 
 ![Deployment](https://img.shields.io/badge/Status-Live-brightgreen)
@@ -11,12 +10,7 @@ This is a full-stack, real-time collaborative document editor, inspired by Googl
 ### 🔴 Live Demo
 
 **You can test the live application here:**
-*(Once you deploy this project to Render, paste the live URL here.)*
-
-### 📸 Screenshot / Demo
-
-![Chat App Demo](https://i.imgur.com/vHq83Wk.png) 
-*(This is a placeholder. You can create a GIF showing two browser windows editing at the same time using a free tool like LICEcap or ScreenToGif, upload it to this repository, and update the link.)*
+**https://doc-editor-frontend-7x5k.onrender.com**
 
 ---
 
@@ -41,13 +35,56 @@ This is a full-stack, real-time collaborative document editor, inspired by Googl
 
 ---
 
+## 🚀 Deployment Guide
+
+### Phase 1: Backend Deployment (Web Service)
+
+1. **Create Web Service on Render**
+   - Go to [Render Dashboard](https://dashboard.render.com)
+   - Click "New +" → "Web Service"
+   - Connect your GitHub repository
+
+2. **Configure Backend**
+   - **Name**: doc-editor-backend
+   - **Region**: Choose your preferred region
+   - **Branch**: main
+   - **Root Directory**: server
+   - **Runtime**: Node
+   - **Build Command**: npm install
+   - **Start Command**: node server.js
+   - **Plan**: Free
+
+3. **Add Environment Variables**
+   - **Key**: MONGO_URI
+   - **Value**: Your MongoDB Atlas connection string
+
+### Phase 2: Frontend Deployment (Static Site)
+
+1. **Create Static Site on Render**
+   - Go to [Render Dashboard](https://dashboard.render.com)
+   - Click "New +" → "Static Site"
+   - Connect the same GitHub repository
+
+2. **Configure Frontend**
+   - **Name**: doc-editor-frontend
+   - **Branch**: main
+   - **Root Directory**: client
+   - **Build Command**: npm install && npm run build
+   - **Publish Directory**: dist
+
+3. **Add Environment Variables**
+   - **Key**: VITE_BACKEND_URL
+   - **Value**: Your backend URL from Phase 1 (e.g., https://doc-editor-backend-xxxx.onrender.com)
+
+---
+
 ## ⚙️ Local Development Setup
 
 To run this project on your own machine:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/HarshMoradiya111/Doc-Editor.git](https://github.com/HarshMoradiya111/Doc-Editor.git)
+    git clone https://github.com/HarshMoradiya111/Doc-Editor.git
     cd Doc-Editor
     ```
 
@@ -55,7 +92,9 @@ To run this project on your own machine:
     ```bash
     cd server
     npm install
-    # IMPORTANT: Add your MongoDB Atlas connection string in server.js
+    # Create .env file with:
+    # MONGO_URI=your_mongodb_connection_string
+    # PORT=3001
     node server.js
     ```
 
@@ -63,6 +102,8 @@ To run this project on your own machine:
     ```bash
     cd client
     npm install
+    # Create .env file with:
+    # VITE_BACKEND_URL=http://localhost:3001
     npm run dev
     ```
 
@@ -72,3 +113,87 @@ To run this project on your own machine:
 ---
 
 ## 📂 Project Structure
+
+```
+Doc-Editor/
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── App.tsx        # Main React component
+│   │   ├── App.css        # Styling
+│   │   └── index.css      # Global styles
+│   ├── package.json       # Frontend dependencies
+│   ├── .env               # Frontend environment variables
+│   └── vite.config.ts     # Vite configuration
+├── server/                # Node.js backend
+│   ├── server.js         # Express server with Socket.IO
+│   ├── package.json      # Backend dependencies
+│   └── .env              # Backend environment variables
+└── README.md            # This file
+```
+
+## 🔐 Environment Variables
+
+### Backend (.env)
+```
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database-name
+PORT=3001
+NODE_ENV=production
+```
+
+### Frontend (.env)
+```
+VITE_BACKEND_URL=https://your-backend-url.onrender.com
+```
+
+## 🎯 Development Commands
+
+- **Frontend Dev**: `npm run dev` (client folder)
+- **Backend Dev**: `node server.js` (server folder)
+- **Frontend Build**: `npm run build`
+- **Backend Start**: `node server.js`
+
+## 📱 Usage
+
+1. Open the live URL
+2. Start typing in the document
+3. Changes are saved automatically every 2 seconds
+4. Edit the document title by clicking on "Untitled Document"
+5. Monitor connection status in the top-right corner
+
+---
+
+## 🏗️ Architecture Notes
+
+This project uses a **monorepo** structure with:
+- **Frontend**: React + TypeScript + Vite for fast development
+- **Backend**: Express.js + Socket.IO for real-time communication
+- **Database**: MongoDB Atlas for cloud persistence
+- **Deployment**: Render for both backend (Web Service) and frontend (Static Site)
+
+The deployment strategy involves:
+- **Two separate services** on Render
+- **Environment variables** for secure configuration
+- **CORS configuration** for cross-origin requests
+- **Auto-scaling** based on traffic
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally
+5. Submit a pull request
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 🔗 Links
+
+- **Live Application**: https://doc-editor-frontend-7x5k.onrender.com
+- **GitHub Repository**: https://github.com/HarshMoradiya111/Doc-Editor
+- **Render Dashboard**: https://dashboard.render.com

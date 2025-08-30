@@ -25,7 +25,7 @@ const server = http.createServer(app);
 
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.NODE_ENV === 'production' ? true : "http://localhost:5173",
     methods: ["GET", "POST"]
   }
 });

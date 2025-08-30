@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import { io, Socket } from 'socket.io-client';
@@ -32,7 +32,7 @@ function App() {
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    const s = io(BACKEND_URL), {
+    const s = io(BACKEND_URL, {
       transports: ['websocket'],
       timeout: 20000,
     });
@@ -74,7 +74,7 @@ function App() {
 
   useEffect(() => {
     if (socket == null || quill == null) return;
-    const handler = (delta: any, oldDelta: any, source: string) => {
+    const handler = (delta: any, _oldDelta: any, source: string) => {
       if (source !== 'user') return;
       socket.emit("send-changes", delta);
     };
