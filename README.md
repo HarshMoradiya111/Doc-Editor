@@ -2,12 +2,7 @@
 
 A real-time collaborative code editor built with **Node.js, Express, Socket.IO, and MongoDB**, featuring syntax highlighting, user presence, and live collaboration.
 
----
 
-## 🚀 Live Demo
-[Click here to try the app](https://your-live-demo-link.com)  
-
----
 
 ## 📂 Project Structure
 ```
