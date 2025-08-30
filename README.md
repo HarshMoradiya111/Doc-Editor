@@ -1,5 +1,146 @@
 # Doc-Editor: A Real-Time Collaborative Document Editor
 
+## 🌐 **Live Demo**
+**Frontend**: [Your Render Frontend URL]  
+**Backend API**: [Your Render Backend URL]
+
+## 🔗 **Database Connection Guide**
+
+### 🛠️ **Local Development Setup**
+
+#### 1. **MongoDB Setup**
+- **Option A**: Use MongoDB Atlas (Recommended)
+  - Create free cluster at [mongodb.com/atlas](https://www.mongodb.com/atlas)
+  - Create database user and whitelist your IP
+  - Get connection string
+
+- **Option B**: Use local MongoDB
+  - Install MongoDB locally
+  - Use connection string: `mongodb://localhost:27017/doc-editor`
+
+#### 2. **Environment Configuration**
+
+**Create `.env` file in `server/` directory:**
+```bash
+cd server
+cp ../.env.example .env
+# Edit .env with your MongoDB URI
+```
+
+**Your `.env` file should contain:**
+```
+MONGO_URI=mongodb+srv://your-username:your-password@cluster.mongodb.net/doc-editor?retryWrites=true&w=majority
+NODE_ENV=development
+PORT=3001
+```
+
+#### 3. **Start Development Servers**
+
+**Backend:**
+```bash
+cd server
+npm install
+npm start
+# Server runs on http://localhost:3001
+```
+
+**Frontend:**
+```bash
+cd client
+npm install
+npm run dev
+# Client runs on http://localhost:5174
+```
+
+### 🚀 **Production Deployment (Render)**
+
+#### **Backend Web Service**
+- **Root Directory**: `server`
+- **Build Command**: `npm install`
+- **Start Command**: `node server.js`
+- **Environment Variables**:
+  ```
+  MONGO_URI=your-mongodb-atlas-uri
+  NODE_ENV=production
+  PORT=10000
+  ```
+
+#### **Frontend Static Site**
+- **Root Directory**: `client`
+- **Build Command**: `npm run build`
+- **Publish Directory**: `dist`
+- **Environment Variables**:
+  ```
+  VITE_BACKEND_URL=https://your-backend-service.onrender.com
+  ```
+
+## 🔧 **Quick Setup Commands**
+
+### **Local Development**
+```bash
+# Clone repository
+git clone https://github.com/HarshMoradiya111/Doc-Editor.git
+cd Doc-Editor
+
+# Setup backend
+cd server
+cp ../.env.example .env
+# Edit .env with your MongoDB URI
+npm install
+npm start
+
+# Setup frontend (new terminal)
+cd client
+npm install
+npm run dev
+```
+
+### **Database Connection Test**
+```bash
+# Test MongoDB connection
+cd server
+node -e "const mongoose = require('mongoose'); mongoose.connect(process.env.MONGO_URI).then(() => console.log('✅ Connected!')).catch(err => console.error('❌ Error:', err))"
+```
+
+## 🎯 **Features**
+- ✅ Real-time collaborative editing
+- ✅ Professional rich text editor
+- ✅ Document persistence
+- ✅ Clean notepad-style interface
+- ✅ Responsive design
+- ✅ Auto-save functionality
+
+## 📱 **Usage**
+1. **Local**: Visit `http://localhost:5174` after setup
+2. **Production**: Visit your Render frontend URL
+3. **Collaboration**: Multiple users can edit simultaneously
+4. **Persistence**: Documents auto-save every 2 seconds
+
+## 🔍 **Troubleshooting**
+
+### **Database Connection Issues**
+- **Error**: "Could not connect to MongoDB Atlas"
+- **Solution**: Check your `MONGO_URI` in `.env` file
+- **Test**: Use MongoDB Compass to verify connection string
+
+### **Port Conflicts**
+- **Frontend**: Default port 5173/5174
+- **Backend**: Default port 3001
+- **Change**: Modify `PORT` in `.env` files
+
+### **Build Issues**
+- **Client**: Run `npm run build` to test production build
+- **Server**: Ensure all dependencies are installed
+
+## 📊 **Project Structure**
+```
+Doc-Editor/
+├── client/          # Vite React frontend
+├── server/          # Express.js + Socket.IO backend
+├── .env.example     # Environment template
+└── README.md        # This file
+```
+
 ![Deployment](https://img.shields.io/badge/Status-Live-brightgreen)
 ![Technology](https://img.shields.io/badge/Stack-MERN%20+%20Socket.IO-blue)
 
